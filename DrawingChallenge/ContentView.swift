@@ -8,12 +8,6 @@
 import SwiftUI
 
 struct Arrow: Shape {
-//    var lineWidth: CGFloat
-//
-//    var animatableData: CGFloat {
-//        get { lineWidth }
-//        set { self.lineWidth = newValue }
-//    }
     
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -41,9 +35,14 @@ struct ContentView: View {
             Arrow()
                 .stroke(Color.green, lineWidth: lineWidth)
                 .frame(width:200, height: 300)
-            Slider(value: $lineWidth, in: 0...100)
-                .padding([.horizontal, .bottom])
-            Text("Line Width: \(lineWidth, specifier: "%.2f")")
+                .onTapGesture {
+                    withAnimation {
+                        self.lineWidth += 10.0
+                    }
+                }
+//            Slider(value: $lineWidth, in: 0...25)
+//                .padding([.horizontal, .bottom])
+//            Stepper("Line width: \(lineWidth, specifier: "%.2f")", value: $lineWidth, step: 10)
         }
         
     }
